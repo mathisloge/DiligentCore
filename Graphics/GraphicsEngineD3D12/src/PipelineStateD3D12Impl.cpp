@@ -405,6 +405,8 @@ PipelineResourceSignatureDesc PipelineStateD3D12Impl::GetDefaultResourceSignatur
         }
     }
 
+    std::sort(Resources.begin(), Resources.end(), [](auto& lhs, auto& rhs) { return std::strcmp(lhs.Name, rhs.Name) > 0; });
+
     SignDesc.NumResources               = static_cast<Uint32>(Resources.size());
     SignDesc.Resources                  = SignDesc.NumResources > 0 ? Resources.data() : nullptr;
     SignDesc.NumImmutableSamplers       = ResourceLayout.NumImmutableSamplers;
