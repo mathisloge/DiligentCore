@@ -4,9 +4,8 @@ project(DiligentCore)
 
 # Define GNU standard installation directories such as CMAKE_INSTALL_INCLUDEDIR, CMAKE_INSTALL_LIBDIR, etc.
 include(GNUInstallDirs)
-include(FindPackages.cmake)
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
-
+include(FindPackages.cmake)
 # Generate XCode schemes
 set(CMAKE_XCODE_GENERATE_SCHEME TRUE)
 # Make malloc write 0xAA to newly allocated memory and 0x55 to deallocated memory

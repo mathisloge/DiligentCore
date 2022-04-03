@@ -4,6 +4,10 @@
     "dependencies": [
         "volk",
         "vulkan-headers",
-        "spirv-tools"
+        "spirv-tools",
+        "spirv-cross",
+        "glew",
+        "glslang",
+        "xxhash"
     ]
 }

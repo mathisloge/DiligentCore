@@ -34,7 +34,7 @@
 #    include <MoltenGLSLToSPIRVConverter/GLSLToSPIRVConverter.h>
 #else
 #    define ENABLE_HLSL
-#    include "SPIRV/GlslangToSpv.h"
+#    include "glslang/SPIRV/GlslangToSpv.h"
 #endif
 
 #include "GLSLangUtils.hpp"
