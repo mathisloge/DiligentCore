@@ -40,7 +40,8 @@ PRIVATE
 
 target_include_directories(Diligent-Primitives
 PUBLIC
-    interface
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/interface>
+    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
 
 source_group("interface" FILES ${INTERFACE})

@@ -2,7 +2,10 @@ cmake_minimum_required (VERSION 3.6)
 
 add_library(Diligent-PlatformInterface INTERFACE)
 
-target_include_directories(Diligent-PlatformInterface INTERFACE interface)
+target_include_directories(Diligent-PlatformInterface INTERFACE     
+	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/interface>
+	$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+)
 
 set(PLATFORM_INTERFACE_HEADERS
 	../interface/Atomics.hpp

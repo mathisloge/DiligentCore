@@ -56,6 +56,7 @@ set(METAL_SUPPORTED FALSE CACHE INTERNAL "Metal is not supported")
 set(ARCHIVER_SUPPORTED FALSE CACHE INTERNAL "Archiver is not supported")
 
 set(DILIGENT_CORE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}" CACHE INTERNAL "DiligentCore module source directory")
+set(DILIGENT_CORE_INSTALL_TARGETS "")
 
 set(CMAKE_OBJECT_PATH_MAX 4096)
 
@@ -448,9 +449,21 @@ add_subdirectory(Graphics)
 add_subdirectory(Tests)
 
 
+set(DILIGENT_CORE_INSTALL_TARGETS 
+    Diligent-BuildSettings
+    Diligent-PublicBuildSettings
+    Diligent-Common
+    Diligent-Primitives
+    Diligent-PlatformInterface
+    Diligent-GraphicsAccessories
+    Diligent-GraphicsEngineInterface
+    Diligent-GraphicsEngine
+
+    Diligent-BasicPlatform
+    Diligent-Win32Platform
+)
 # Installation instructions
 if(DILIGENT_INSTALL_CORE)
-
     install_combined_static_lib(
         "${CMAKE_STATIC_LIBRARY_PREFIX}DiligentCore${CMAKE_STATIC_LIBRARY_SUFFIX}"
         "${DILIGENT_CORE_INSTALL_LIBS_LIST}"
@@ -460,6 +473,37 @@ if(DILIGENT_INSTALL_CORE)
     )
 
     install(FILES License.txt DESTINATION "Licenses" RENAME DiligentEngine-License.txt)
+
+    set(DILIGENT_CORE_CMAKE_INSTALL_DIR "${CMAKE_INSTALL_LIBDIR}/cmake/DiligentCore" CACHE INTERNAL "Core libraries installation list")
+    include(CMakePackageConfigHelpers)
+    install(TARGETS ${DILIGENT_CORE_INSTALL_TARGETS}
+        EXPORT DiligentCoreTargets
+        INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+            COMPONENT DiligentRuntime
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+            COMPONENT DiligentRuntime
+            NAMELINK_COMPONENT DiligentDevelopment
+        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+            COMPONENT DiligentDevelopment
+    )
+
+    configure_package_config_file(DiligentCoreConfig.in.cmake
+        "${CMAKE_CURRENT_BINARY_DIR}/DiligentCoreConfig.cmake"
+        INSTALL_DESTINATION ${DILIGENT_CORE_CMAKE_INSTALL_DIR}
+        PATH_VARS CMAKE_INSTALL_INCLUDEDIR
+        NO_CHECK_REQUIRED_COMPONENTS_MACRO
+    )
+
+    install(
+        FILES "${CMAKE_CURRENT_BINARY_DIR}/DiligentCoreConfig.cmake"
+        DESTINATION ${DILIGENT_CORE_CMAKE_INSTALL_DIR}
+    )
+    install(EXPORT DiligentCoreTargets
+        DESTINATION ${DILIGENT_CORE_CMAKE_INSTALL_DIR}
+        FILE DiligentCoreTargets.cmake
+        NAMESPACE DiligentCore::
+    )
 endif(DILIGENT_INSTALL_CORE)
 
 # Create a custom target to run source code formatting validation command

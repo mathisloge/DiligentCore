@@ -22,7 +22,8 @@ set_common_target_properties(Diligent-Win32Platform)
 
 target_include_directories(Diligent-Win32Platform
 PUBLIC
-    interface
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/interface>
+    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
 
 target_link_libraries(Diligent-Win32Platform
