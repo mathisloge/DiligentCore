@@ -1,0 +1,9 @@
+{
+    "name": "diligent-core",
+    "version-string": "main",
+    "dependencies": [
+        "volk",
+        "vulkan-headers",
+        "spirv-tools"
+    ]
+}
