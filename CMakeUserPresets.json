@@ -10,7 +10,7 @@
             "name": "intallloc",
             "hidden": true,
             "cacheVariables": {
-                "CMAKE_TOOLCHAIN_FILE": "D:/dev/install",
+                "CMAKE_INSTALL_PREFIX": "D:/dev/install",
                 "BUILD_SHARED_LIBS": "ON"
             }
         },

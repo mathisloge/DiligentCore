@@ -6,6 +6,7 @@
         "vulkan-headers",
         "spirv-tools",
         "spirv-cross",
+        "spirv-headers",
         "glew",
         "glslang",
         "xxhash"
