@@ -141,17 +141,17 @@ if (VULKAN_SUPPORTED AND (PLATFORM_WIN32 OR PLATFORM_LINUX OR PLATFORM_MACOS OR 
     install(FILES "${volk_SOURCE_DIR}/LICENSE.md" DESTINATION "Licenses/ThirdParty/${DILIGENT_CORE_DIR}" RENAME Volk-License.md)
 endif()
 
-if ((${DILIGENT_BUILD_GOOGLE_TEST}) AND (NOT TARGET gtest))
+if ((${DILIGENT_BUILD_GOOGLE_TEST}) AND (NOT TARGET GTest::gtest))
     set(INSTALL_GTEST OFF CACHE BOOL "Do not install googletest")
     set(BUILD_GMOCK OFF CACHE BOOL "Do not build gmock")
     set(gtest_force_shared_crt ON CACHE BOOL "Use shared (DLL) run-time lib even when Google Test is built as static lib.")
     add_subdirectory(googletest)
     set_directory_root_folder("googletest" "DiligentCore/ThirdParty/googletest")
-    set_target_properties(gtest gtest_main PROPERTIES
+    set_target_properties(GTest::gtest GTest::gtest_main PROPERTIES
         CXX_VISIBILITY_PRESET hidden # -fvisibility=hidden
         C_VISIBILITY_PRESET hidden # -fvisibility=hidden
         VISIBILITY_INLINES_HIDDEN TRUE
-        )
+    )
 
     get_target_property(GTEST_SOURCE_DIR gtest SOURCE_DIR)
     install(FILES "googletest/LICENSE" DESTINATION "Licenses/ThirdParty/${DILIGENT_CORE_DIR}" RENAME googletest-License.txt)

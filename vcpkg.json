@@ -9,6 +9,7 @@
         "spirv-headers",
         "glew",
         "glslang",
-        "xxhash"
+        "xxhash",
+        "gtest"
     ]
 }

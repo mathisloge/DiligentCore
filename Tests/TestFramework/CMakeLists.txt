@@ -14,7 +14,7 @@ PRIVATE
     Diligent-BuildSettings
     Diligent-TargetPlatform
 PUBLIC
-    gtest
+    GTest::gtest
 )
 
 target_include_directories(Diligent-TestFramework

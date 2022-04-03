@@ -23,3 +23,6 @@ find_path(VULKAN_HEADERS_INCLUDE_DIRS "vulkan/vulkan.h")
 add_library(Vulkan-Headers INTERFACE IMPORTED)
 target_include_directories(Vulkan-Headers INTERFACE "${VULKAN_HEADERS_INCLUDE_DIRS}")
 add_library(Vulkan::Headers ALIAS Vulkan-Headers)
+
+# tests
+find_package(GTest CONFIG REQUIRED)

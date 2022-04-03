@@ -27,7 +27,11 @@
                 "vcpkg",
                 "intallloc",
                 "windows-64-default-debug"
-            ]
+            ],
+            "cacheVariables": {
+                "DILIGENT_BUILD_TESTS": "ON",
+                "DILIGENT_BUILD_CORE_INCLUDE_TEST": "OFF"
+            }
         },
         {
             "name": "windows-64-release-vcpkg",

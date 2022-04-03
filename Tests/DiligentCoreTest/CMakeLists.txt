@@ -21,7 +21,7 @@ set_common_target_properties(DiligentCoreTest)
 
 target_link_libraries(DiligentCoreTest
 PRIVATE
-    gtest_main
+    GTest::gtest_main
     Diligent-BuildSettings
     Diligent-TargetPlatform
     Diligent-TestFramework
