@@ -104,6 +104,7 @@ PUBLIC
     include
 PRIVATE
     ../GraphicsEngine/include
+    ${CMAKE_CURRENT_BINARY_DIR}
 )
 
 if (DXC_SUPPORTED)
@@ -161,7 +162,7 @@ set(HLSL_DEFINITIONS include/HLSLDefinitions.fxh)
 
 # We must use the full path, otherwise the build system will not be able to properly detect
 # changes and shader conversion custom command will run every time
-set(HLSL_DEFINITIONS_INC ${CMAKE_CURRENT_SOURCE_DIR}/include/HLSLDefinitions_inc.fxh)
+set(HLSL_DEFINITIONS_INC ${CMAKE_CURRENT_BINARY_DIR}/include/HLSLDefinitions_inc.fxh)
 set_source_files_properties(${HLSL_DEFINITIONS_INC} PROPERTIES GENERATED TRUE)
 
 target_sources(Diligent-ShaderTools PRIVATE
@@ -186,7 +187,7 @@ source_group("interface" FILES ${INTERFACE})
 if (DXBC_CHECKSUM_SOURCE)
     source_group("ThirdParty\\DXBCChecksum" FILES ${DXBC_CHECKSUM_SOURCE})
 endif()
-source_group("generated" FILES include/HLSLDefinitions_inc.fxh)
+source_group("generated" FILES ${HLSL_DEFINITIONS_INC})
 
 set_target_properties(Diligent-ShaderTools PROPERTIES
     FOLDER DiligentCore/Graphics

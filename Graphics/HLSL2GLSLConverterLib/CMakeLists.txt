@@ -22,7 +22,7 @@ set(GLSL_DEFINITIONS include/GLSLDefinitions.h)
 
 # We must use the full path, otherwise the build system will not be able to properly detect
 # changes and shader conversion custom command will run every time
-set(GLSL_DEFINITIONS_INC ${CMAKE_CURRENT_SOURCE_DIR}/include/GLSLDefinitions_inc.h)
+set(GLSL_DEFINITIONS_INC ${CMAKE_CURRENT_BINARY_DIR}/include/GLSLDefinitions_inc.h)
 set_source_files_properties(${GLSL_DEFINITIONS_INC} PROPERTIES GENERATED TRUE)
 
 add_library(Diligent-HLSL2GLSLConverterLib STATIC
@@ -39,6 +39,7 @@ PUBLIC
     interface
 PRIVATE
     include
+    ${CMAKE_BINARY_DIR}
 )
 
 target_link_libraries(Diligent-HLSL2GLSLConverterLib
@@ -66,7 +67,7 @@ endif()
 source_group("src" FILES ${SOURCE})
 source_group("include" FILES ${INCLUDE})
 source_group("interface" FILES ${INTERFACE})
-source_group("generated" FILES include/GLSLDefinitions_inc.h)
+source_group("generated" FILES ${GLSL_DEFINITIONS_INC})
 
 set_target_properties(Diligent-HLSL2GLSLConverterLib PROPERTIES
     FOLDER DiligentCore/Graphics
