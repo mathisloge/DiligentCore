@@ -2,8 +2,6 @@ find_package(xxHash CONFIG REQUIRED)
 find_package(glslang CONFIG REQUIRED)
 
 # opengl
-set(GLEW_USE_STATIC_LIBS ON)
-find_package(GLEW REQUIRED)
 #vulkan
 find_package(volk CONFIG REQUIRED)
 
